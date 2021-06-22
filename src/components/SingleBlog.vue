@@ -7,6 +7,7 @@
    </div>
 </template>
 <script>
+import axios from 'axios'
 export default{
     name: 'single-blog',
     data(){
@@ -17,17 +18,20 @@ export default{
         
     },
     created(){
-            this.$http.get('https://damaerguo-221806-default-rtdb.asia-southeast1.firebasedatabase.app/post/'+this.id+'.json').then(function(data){
+            //this.$http.get('https://damaerguo-221806-default-rtdb.asia-southeast1.firebasedatabase.app/post/'+this.id+'.json')
+           axios.get('/post/'+this.id+'.json')
+            .then(function(data){
                 //this.blog=data.body;  
-                return data.json()              
-            }).then(function(data){
+                //return data.json() 
+                return data.data;             
+            }).then((data)=>{
                 //console.log(data);
                 this.blog=data;
             })
         },
         methods:{
             deleteBlog(){
-                this.$http.delete('https://damaerguo-221806-default-rtdb.asia-southeast1.firebasedatabase.app/post/'+this.id+'.json').then(function(){
+                this.$http.delete('/post/'+this.id+'.json').then(function(){
                    this.$router.push({path:'/'})
                 })
                 

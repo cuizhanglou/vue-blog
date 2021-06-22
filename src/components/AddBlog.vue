@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'add-blog',
   props: {
@@ -64,11 +65,13 @@ export default {
   },
   methods:{
       post:function(){
-          this.$http.post('https://damaerguo-221806-default-rtdb.asia-southeast1.firebasedatabase.app/post.json',this.blog)
+          var _this=this;
+          //this.$http.post('https://damaerguo-221806-default-rtdb.asia-southeast1.firebasedatabase.app/post.json',this.blog)
+           axios.post('/post.json',this.blog)
 
           .then(function(data){
               console.log(data);
-              this.submmited=true;
+              _this.submmited=true;
           })
       }
   }

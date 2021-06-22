@@ -4,7 +4,12 @@ import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import Routes from './router'
+import axios from 'axios'
 
+//全局配置
+axios.defaults.baseURL='https://damaerguo-221806-default-rtdb.asia-southeast1.firebasedatabase.app'
+axios.defaults.headers.common['Authorization']='Token'
+axios.defaults.headers.post['Content-type']=''
 
 Vue.config.productionTip = false
 Vue.use(VueResource)

@@ -11,7 +11,7 @@
 </template>
 
 <script>
-
+import axios from 'axios'
 export default {
   name: 'show-blog',
   data(){
@@ -21,11 +21,14 @@ export default {
       }
   },
   created(){
-      this.$http.get("https://damaerguo-221806-default-rtdb.asia-southeast1.firebasedatabase.app/post.json").then(function(data){
+     // this.$http.get("https://damaerguo-221806-default-rtdb.asia-southeast1.firebasedatabase.app/post.json")
+     axios.get("/post.json")
+      .then(function(data){
 
           //this.blogs=data.body.slice(0,10);
-          return data.json()
-      }).then(function(data){
+          //return data.json()
+          return data.data;
+      }).then((data)=>{
           var blogArray=[]
           for(let key in data){
              // console.log(data[key]);
